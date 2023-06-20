@@ -5,9 +5,9 @@ using namespace std;
 #define tab "\t"
 
 //#define ELEVATOR //лифт
-//#define FACTOR //факториал числа
+#define FACTOR //факториал числа
 //#define POWER
-#define FIBONACCI_NUMBER //число в пределе последовательности Фибоначчи
+//#define FIBONACCI_NUMBER //число в пределе последовательности Фибоначчи
 //#define FIBONACCI_QUANT //количество членов Фибоначчи
 
 void elevator(int floor);
@@ -65,16 +65,11 @@ void elevator(int floor) {
 }
 
 int factorial(int number) {
-	if (number >0) {
-		return number*factorial(number - 1);
-	}
+		return number>0?number*factorial(number - 1):1;
 }
 
 double power(int num, int ext) {
-	if (num == 1 || num == 0) return num;
-	if (ext > 1) return num * power(num, --ext);
-	if (ext < 1) return 1. / num * power(num, ++ext);
-	return num;
+	return ext==0?1:ext>0?num*power(num,ext-1):1/power(num,-ext);
 }
 
 void Fibonacci_Num(int num, int a, int b) {
