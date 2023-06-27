@@ -62,7 +62,7 @@ void Check(char field[], const int n, char player) {
 	if (field[2] == field[5] && field[5] == field[8] && field[2] != 0)game_over = true;
 	bool draw = true;
 	for (int i = 0; i < n - 1; i++) {
-		if (field[i] == 0) draw = false;
+		if (field[i] != 0) draw = false;
 		break;
 	}
 	if (draw) {
