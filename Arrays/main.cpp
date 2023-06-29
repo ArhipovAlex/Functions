@@ -14,7 +14,7 @@
 #define DOUBLE_ARR_2 //двумерный массив вещественных чисел
 #define CHAR_ARR_2 //двумерный массив символов
 
-void main() {
+/*void main() {
 	setlocale(LC_ALL, "rus");
 	const int n = 10;
 	int stepLeft = 1;
@@ -154,3 +154,4 @@ void main() {
 
 
 }
+*/
