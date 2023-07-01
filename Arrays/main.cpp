@@ -3,32 +3,15 @@ using namespace std;
 
 #define tab "\t"
 
-void FillRand(int arr[], int size);
-void FillRand(double arr[], int size);
-
-void Print(int arr[], int size);
-void Print(double arr[], int size);
-
-void Sort(int arr[], int size);
-void Sort(double arr[], int size);
-
-int Sum(int arr[], int size);
-double Sum(double arr[], int size);
-
-double Avg(int arr[], int size);
-double Avg(double arr[], int size);
-
-int MinValueIn(int arr[], int size);
-double MinValueIn(double arr[], int size);
-
-int MaxValueIn(int arr[], int size);
-double MaxValueIn(double arr[], int size);
-
-void ShiftLeft(int arr[], int size, int step);
-void ShiftLeft(double arr[], int size, int step);
-
-void ShiftRight(int arr[], int size, int step);
-void ShiftRight(double arr[], int size, int step);
+template <class T> void FillRand(T arr[], int size);
+template <class T> void Print(T arr[], int size);
+template <class T> void Sort(T arr[], int size);
+template <class T> T Sum(T arr[], int size);
+template <class T> double Avg(T arr[], int size);
+template <class T> T MinValueIn(T arr[], int size);
+template <class T> T MaxValueIn(T arr[], int size);
+template <class T> void ShiftLeft(T arr[], int size, int step);
+template <class T> void ShiftRight(T arr[], int size, int step);
 
 void main() {
 	setlocale(LC_ALL, "rus");
@@ -82,44 +65,23 @@ void main() {
 	cout << endl;
 }
 
-void FillRand(int arr[], int size) {
+template <class T> void FillRand(T arr[], int size) {
 	for (int i = 0; i < size; i++) {
-		arr[i] = rand() % 100;
-	}
-}
-void FillRand(double arr[], int size) {
-	for (int i = 0; i < size; i++) {
-		arr[i] = rand()/100.;
+		arr[i] = (rand() % 100)/10.;
 	}
 }
 
-void Print(int arr[], int size) {
-	for (int i = 0; i < size; i++) {
-		cout << arr[i] << tab;
-	}
-}
-void Print(double arr[], int size) {
+template <class T> void Print(T arr[], int size) {
 	for (int i = 0; i < size; i++) {
 		cout << arr[i] << tab;
 	}
 }
 
-void Sort(int arr[], int size) {
+template <class T> void Sort(T arr[], int size) {
 	for (int i = 0; i < size; i++) {
 		for (int j = i+1; j < size; j++) {
 			if (arr[j] < arr[i]) {
-				int buffer = arr[i];
-				arr[i] = arr[j];
-				arr[j] = buffer;
-			}
-		}
-	}
-}
-void Sort(double arr[], int size) {
-	for (int i = 0; i < size; i++) {
-		for (int j = i+1; j < size; j++) {
-			if (arr[j] < arr[i]) {
-				int buffer = arr[i];
+				T buffer = arr[i];
 				arr[i] = arr[j];
 				arr[j] = buffer;
 			}
@@ -127,39 +89,20 @@ void Sort(double arr[], int size) {
 	}
 }
 
-int Sum(int arr[], int size) {
-	int sum = 0;
-	for (int i = 0; i < size; i++) {
-		sum += arr[i];
-	}
-	return sum;
-}
-double Sum(double arr[], int size) {
-	int sum = 0;
+template <class T> T Sum(T arr[], int size) {
+	T sum = 0;
 	for (int i = 0; i < size; i++) {
 		sum += arr[i];
 	}
 	return sum;
 }
 
-double Avg(int arr[], int size) {
-	return (double)Sum(arr, size) / size;
-}
-double Avg(double arr[], int size) {
+template <class T> double Avg(T arr[], int size) {
 	return (double)Sum(arr, size) / size;
 }
 
-int MinValueIn(int arr[], int size) {
-	int min = arr[0];
-	for (int i = 1; i < size; i++) {
-		if (min > arr[i]) {
-			min = arr[i];
-		}
-	}
-	return min;
-}
-double MinValueIn(double arr[], int size) {
-	int min = arr[0];
+template <class T> T MinValueIn(T arr[], int size) {
+	T min = arr[0];
 	for (int i = 1; i < size; i++) {
 		if (min > arr[i]) {
 			min = arr[i];
@@ -168,17 +111,8 @@ double MinValueIn(double arr[], int size) {
 	return min;
 }
 
-int MaxValueIn(int arr[], int size) {
-	int max = arr[0];
-	for (int i = 1; i < size; i++) {
-		if (max < arr[i]) {
-			max = arr[i];
-		}
-	}
-	return max;
-}
-double MaxValueIn(double arr[], int size) {
-	int max = arr[0];
+template <class T> T MaxValueIn(T arr[], int size) {
+	T max = arr[0];
 	for (int i = 1; i < size; i++) {
 		if (max < arr[i]) {
 			max = arr[i];
@@ -187,18 +121,9 @@ double MaxValueIn(double arr[], int size) {
 	return max;
 }
 
-void ShiftLeft(int arr[], int size, int step) {
+template <class T> void ShiftLeft(T arr[], int size, int step) {
 	for (int i = 0; i < step; i++) {
-		int buffer = arr[0];
-		for (int j = 1; j < size; j++) {
-			arr[j-1] = arr[j];
-		}
-		arr[size-1] = buffer;
-	}
-}
-void ShiftLeft(double arr[], int size, int step) {
-	for (int i = 0; i < step; i++) {
-		double buffer = arr[0];
+		T buffer = arr[0];
 		for (int j = 1; j < size; j++) {
 			arr[j-1] = arr[j];
 		}
@@ -206,18 +131,9 @@ void ShiftLeft(double arr[], int size, int step) {
 	}
 }
 
-void ShiftRight(int arr[], int size, int step) {
+template <class T> void ShiftRight(T arr[], int size, int step) {
 	for (int i = 0; i < step; i++) {
-		int buffer = arr[size-1];
-		for (int j = size-1; j >=0; j--) {
-			arr[j] = arr[j-1];
-		}
-		arr[0] = buffer;
-	}
-}
-void ShiftRight(double arr[], int size, int step) {
-	for (int i = 0; i < step; i++) {
-		double buffer = arr[size-1];
+		T buffer = arr[size-1];
 		for (int j = size-1; j >=0; j--) {
 			arr[j] = arr[j-1];
 		}
