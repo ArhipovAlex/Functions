@@ -1,6 +1,7 @@
 //Print.h
 #pragma once
 #include"stdafx.h"
+#include"Constants.h"
 
 
 template <class T> void Print(T arr[], int size) {
